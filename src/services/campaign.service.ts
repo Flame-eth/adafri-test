@@ -1,5 +1,5 @@
 import { Campaign } from "@prisma/client";
-import { db } from "models";
+import { db } from "../models";
 
 /**
  * The function createCampaign asynchronously creates a new campaign using the provided data and
