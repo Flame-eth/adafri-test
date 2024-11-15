@@ -16,9 +16,15 @@ generator client {
 model Campaign {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  status      String
+  status      CampaignStatus @default(ACTIVE)
   impressions Int
   clicks      Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+
+enum CampaignStatus {
+  ACTIVE
+  INACTIVE
 }
