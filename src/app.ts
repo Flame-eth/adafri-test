@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
+import routers from "routers";
 
 /* `const app = express();` is creating an instance of the Express application. Express is a web
 application framework for Node.js that provides a set of features for building web applications and
@@ -29,6 +30,7 @@ you are adding these security headers to your Express application to enhance its
 app.use(helmet());
 
 
+app.use("/api/v1", routes())
 
 
 
