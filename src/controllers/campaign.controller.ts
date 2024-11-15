@@ -7,24 +7,24 @@ import type { Request, Response } from "express";
  * @param {Request} req - Request object containing the data for creating a campaign.
  * @param {Response} res - The `res` parameter in the `createCampaign` function is an instance of the
  * Response object in Express.js. It is used to send the HTTP response back to the client. In this
- * function, it is used to send a JSON response with the sendStatus code, message, data, and error
+ * function, it is used to send a JSON response with the.status code, message, data, and error
  * information
- * @returns The `createCampaign` function is returning a JSON response with a sendStatus code, message,
+ * @returns The `createCampaign` function is returning a JSON response with a.status code, message,
  * data (campaign object), and a flag indicating whether there was an error or not. If the campaign
- * creation is successful, it returns a 201 sendStatus with the message "Campaign created successfully" and
- * the campaign data. If an error occurs during the process, it returns a 500 sendStatus with the message
+ * creation is successful, it returns a 201.status with the message "Campaign created successfully" and
+ * the campaign data. If an error occurs during the process, it returns a 500.status with the message
  * "An
  */
 export const createCampaign = async (req: Request, res: Response): Promise<any> => {
   try {
     const campaign = await CampaignService.createCampaign(req.body);
-    return res.sendStatus(201).json({
+    return res.status(201).json({
       message: "Campaign created successfully",
       data: campaign,
       hasError: false,
     });
   } catch (error) {
-    return res.sendStatus(500).json({
+    return res.status(500).json({
       message: "An error occurred",
       error: error,
       hasError: true,
@@ -43,21 +43,21 @@ export const createCampaign = async (req: Request, res: Response): Promise<any> 
  * the HTTP response that an Express.js route handler sends when it receives an HTTP request. It allows
  * you to send back a response to the client making the request. In this case, the `res` object is used
  * @returns The `getCampaigns` function returns a JSON response with a message indicating the success
- * or failure of retrieving campaigns. If the retrieval is successful, it returns a sendStatus of 200 with
+ * or failure of retrieving campaigns. If the retrieval is successful, it returns a.status of 200 with
  * the message "Campaigns retrieved successfully" along with the retrieved campaigns data and
- * `hasError` set to false. If an error occurs during the retrieval process, it returns a sendStatus of 500
+ * `hasError` set to false. If an error occurs during the retrieval process, it returns a.status of 500
  * with the message "
  */
 export const getCampaigns = async (req: Request, res: Response): Promise<any> => {
   try {
     const campaigns = await CampaignService.getCampaigns();
-    return res.sendStatus(200).json({
+    return res.status(200).json({
       message: "Campaigns retrieved successfully",
       data: campaigns,
       hasError: false,
     });
   } catch (error) {
-    return res.sendStatus(500).json({
+    return res.status(500).json({
       message: "An error occurred",
       error: error,
       hasError: true,
@@ -74,29 +74,29 @@ export const getCampaigns = async (req: Request, res: Response): Promise<any> =>
  * provided by the Express.js framework when
  * @param {Response} res - The `res` parameter in the `getCampaignById` function is an object
  * representing the HTTP response that an Express.js route handler sends when it receives an HTTP
- * request. It allows you to send back data, set headers, and control the response sendStatus.
- * @returns The `getCampaignById` function is returning a JSON response with sendStatus codes and messages
- * based on the outcome of the operation. If the campaign is found, it returns a 200 sendStatus with the
+ * request. It allows you to send back data, set headers, and control the response.status.
+ * @returns The `getCampaignById` function is returning a JSON response with.status codes and messages
+ * based on the outcome of the operation. If the campaign is found, it returns a 200.status with the
  * message "Campaign retrieved successfully" and the campaign data. If the campaign is not found, it
- * returns a 404 sendStatus with the message "Campaign not found". If an error occurs during the process,
+ * returns a 404.status with the message "Campaign not found". If an error occurs during the process,
  * it
  */
 export const getCampaignById = async (req: Request, res: Response) : Promise<any> => {
   try {
     const campaign = await CampaignService.getCampaignById(req.params.id);
     if (!campaign) {
-      return res.sendStatus(404).json({
+      return res.status(404).json({
         message: "Campaign not found",
         hasError: true,
       });
     }
-    return res.sendStatus(200).json({
+    return res.status(200).json({
       message: "Campaign retrieved successfully",
       data: campaign,
       hasError: false,
     });
   } catch (error) {
-    return res.sendStatus(500).json({
+    return res.status(500).json({
       message: "An error occurred",
       error: error,
       hasError: true,
@@ -113,7 +113,7 @@ export const getCampaignById = async (req: Request, res: Response) : Promise<any
  * `req` is of type
  * @param {Response} res - The `res` parameter in the `updateCampaign` function is an object
  * representing the HTTP response that an Express.js route handler sends when it receives an HTTP
- * request. It allows you to send back data, set sendStatus codes, and more to the client making the
+ * request. It allows you to send back data, set.status codes, and more to the client making the
  * request.
  * @returns The `updateCampaign` function returns a JSON response with different messages and data
  * based on the outcome of the update operation.
@@ -125,18 +125,18 @@ export const updateCampaign = async (req: Request, res: Response) :  Promise<any
       req.body
     );
     if (!campaign) {
-      return res.sendStatus(404).json({
+      return res.status(404).json({
         message: "Campaign not found",
         hasError: true,
       });
     }
-    return res.sendStatus(200).json({
+    return res.status(200).json({
       message: "Campaign updated successfully",
       data: campaign,
       hasError: false,
     });
   } catch (error) {
-    return res.sendStatus(500).json({
+    return res.status(500).json({
       message: "An error occurred",
       error: error,
       hasError: true,
@@ -153,30 +153,30 @@ export const updateCampaign = async (req: Request, res: Response) :  Promise<any
  * to access the `
  * @param {Response} res - The `res` parameter in the `deleteCampaign` function is the response object
  * that will be used to send the response back to the client making the request. It allows you to set
- * the sendStatus code, send JSON data, and handle errors or success messages based on the outcome of the
+ * the.status code, send JSON data, and handle errors or success messages based on the outcome of the
  * operation.
- * @returns The deleteCampaign function returns a JSON response with a sendStatus code and message based on
+ * @returns The deleteCampaign function returns a JSON response with a.status code and message based on
  * the outcome of the deletion operation. If the campaign is successfully deleted, it returns a 200
- * sendStatus with a success message and the deleted campaign data. If the campaign is not found, it
- * returns a 404 sendStatus with a message indicating that the campaign was not found. If an error occurs
+ *.status with a success message and the deleted campaign data. If the campaign is not found, it
+ * returns a 404.status with a message indicating that the campaign was not found. If an error occurs
  * during the deletion process, it
  */
 export const deleteCampaign = async (req: Request, res: Response) :  Promise<any> => {
   try {
     const campaign = await CampaignService.deleteCampaign(req.params.id);
     if (!campaign) {
-      return res.sendStatus(404).json({
+      return res.status(404).json({
         message: "Campaign not found",
         hasError: true,
       });
     }
-    return res.sendStatus(200).json({
+    return res.status(200).json({
       message: "Campaign deleted successfully",
       data: campaign,
       hasError: false,
     });
   } catch (error) {
-    return res.sendStatus(500).json({
+    return res.status(500).json({
       message: "An error occurred",
       error: error,
       hasError: true,
