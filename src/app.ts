@@ -3,12 +3,13 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import routers from "routers";
+import type { Express } from "express";
 
 /* `const app = express();` is creating an instance of the Express application. Express is a web
 application framework for Node.js that provides a set of features for building web applications and
 APIs. By creating an instance of the Express application, you can then use this `app` object to
 define routes, middleware, and other functionalities for your web application. */
-const app = express();
+const app: Express = express();
 
 /* `app.use(bodyParser.json());` is setting up middleware in the Express application to parse incoming
 requests with JSON payloads. This middleware function provided by the `body-parser` package parses
@@ -30,7 +31,7 @@ you are adding these security headers to your Express application to enhance its
 app.use(helmet());
 
 
-app.use("/api/v1", routes())
+app.use("/api/v1", routers())
 
 
 

@@ -3,7 +3,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 8080;
+if (!process.env.PORT) {
+  process.exit(1);
+}
+const PORT: number = parseInt(process.env.PORT as string, 10);
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
