@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
-import routers from "routers";
+import routers from "./routers";
 import type { Express } from "express";
 
 /* `const app = express();` is creating an instance of the Express application. Express is a web
