@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { body, param, validationResult } from "express-validator";
 
 export const createCampaignValidationRules: any = [
-  body("title").isString().notEmpty(),
-  body("description").isString().notEmpty(),
+  body("title").isString().notEmpty().escape(),
+  body("description").isString().notEmpty().escape(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -17,8 +17,8 @@ export const createCampaignValidationRules: any = [
 ];
 
 export const updateCampaignValidationRules: any = [
-  param("id").isString().notEmpty(),
-  body("title").isString().notEmpty().optional(),
+  param("id").isString().notEmpty().escape(),
+  body("title").isString().notEmpty().optional().escape(),
   body("description").isString().notEmpty().optional(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
@@ -33,7 +33,7 @@ export const updateCampaignValidationRules: any = [
 ];
 
 export const CampaignByIdValidationRules: any = [
-  param("id").isString().notEmpty(),
+  param("id").isString().notEmpty().escape(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
