@@ -264,13 +264,17 @@ You can test the API using tools like Postman, Insomnia, or cURL. Below are some
 ### Adding a new feature
 
 1.Create a new route in `routes/`.
+
 2.Write the controller logic in `controllers/`.
+
 3.Add service methods in `services/`.
+
 3.Validate input using middleware in `middlewares/`.
 
 ### Prisma Database Management
 
 1.Update the Prisma schema in `prisma/schema.prisma`.
+
 2.Run `npx prisma db push` to create a new migration.
 
 ## Contribution Guidelines
