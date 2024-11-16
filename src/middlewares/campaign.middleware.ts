@@ -4,6 +4,12 @@ import { body, param, validationResult } from "express-validator";
 export const createCampaignValidationRules: any = [
   body("title").isString().notEmpty().escape(),
   body("description").isString().notEmpty().escape(),
+  body("status")
+    .isString()
+    .notEmpty()
+    .isIn(["ACTIVE", "INACTIVE"])
+    .optional()
+    .escape(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -20,6 +26,12 @@ export const updateCampaignValidationRules: any = [
   param("id").isString().notEmpty().escape(),
   body("title").isString().notEmpty().optional().escape(),
   body("description").isString().notEmpty().optional(),
+  body("status")
+    .isString()
+    .notEmpty()
+    .isIn(["ACTIVE", "INACTIVE"])
+    .optional()
+    .escape(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
