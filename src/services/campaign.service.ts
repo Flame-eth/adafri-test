@@ -22,8 +22,16 @@ export const createCampaign = async (data: Campaign): Promise<Campaign> => {
  * @returns The `getCampaigns` function is returning a Promise that resolves to an array of `Campaign`
  * objects.
  */
-export const getCampaigns = async (): Promise<Campaign[]> => {
-  const campaigns = await db.campaign.findMany();
+export const getCampaigns = async (status?: string): Promise<Campaign[]> => {
+  const filter: any = {};
+  if (status) {
+    filter.where = {
+      status,
+    };
+  }
+  const campaigns = await db.campaign.findMany({
+    ...filter,
+  });
   return campaigns;
 };
 
