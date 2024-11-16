@@ -40,8 +40,8 @@ README.md                  # Documentation
 Create a .env file in the project root directory and configure the following variables:
 
 ```env
-DATABASE_URL = 
-PORT = 
+DATABASE_URL =
+PORT =
 ```
 
 For reference, see the .env.example file.
@@ -65,7 +65,7 @@ cd adafri-test
 2.Install dependencies:
 
 ```bash
-yarn 
+yarn
 ```
 
 or
@@ -87,7 +87,7 @@ You can update the DATABASE_URL variable to work with your MongoDB instance.
 4.Apply prisma migrations:
 
 ```bash
-npx prisma migrate 
+npx prisma migrate
 ```
 
 5.Run the application:
@@ -126,24 +126,50 @@ The base URL for the API is [http://localhost:8080/api/v1](http://localhost:8080
 
 ### Endpoints
 
-- Create a new campaign:  
+- Create a new campaign:
+
   - `POST /campaigns`
   - Description: Create a new advertising campaign.
   - Request body:  
-        ```json
-        {
+     `json
+    {
+        "title": "Campaign Name",
+        "description": "Campaign Description",
+        "status": "ACTIVE",
+        "impressions": 1000,
+        "clicks": 100,
+    }
+    `
+  - Response:  
+     `json
+    {
+        "message": "Campaign created successfully",
+        "data": {
+            "id": "48346836438463463724",
             "title": "Campaign Name",
             "description": "Campaign Description",
             "status": "ACTIVE",
             "impressions": 1000,
             "clicks": 100,
+            "createdAt": "2022-01-01T00:00:00.000Z",
+            "updatedAt": "2022-01-01T00:00:00.000Z"
         }
-        ```
+        "hasError": false
+    }
+    `
+
+- Get all campaigns:
+
+  - `GET /campaigns`
+  - Description: Retrieve all advertising campaigns. Use query parameters to filter campaigns by status. `?status=active` or `?status=inactive`.
+  - Query parameters:
+    - `status`: Filter campaigns by status (active or inactive).
   - Response:  
-        ```json
-        {
-            "message": "Campaign created successfully",
-            "data": {
+     `json
+    {
+        "message": "Campaigns retrieved successfully",
+        "data": [
+            {
                 "id": "48346836438463463724",
                 "title": "Campaign Name",
                 "description": "Campaign Description",
@@ -153,113 +179,91 @@ The base URL for the API is [http://localhost:8080/api/v1](http://localhost:8080
                 "createdAt": "2022-01-01T00:00:00.000Z",
                 "updatedAt": "2022-01-01T00:00:00.000Z"
             }
-            "hasError": false
-        }
-        ```
+        ],
+        "hasError": false
+    }
+    `
 
-- Get all campaigns:  
-  - `GET /campaigns`
-  - Description: Retrieve all advertising campaigns. Use query parameters to filter campaigns by status. `?status=active` or `?status=inactive`.
-  - Query parameters:  
-    - `status`: Filter campaigns by status (active or inactive).
-  - Response:  
-        ```json
-        {
-            "message": "Campaigns retrieved successfully",
-            "data": [
-                {
-                    "id": "48346836438463463724",
-                    "title": "Campaign Name",
-                    "description": "Campaign Description",
-                    "status": "ACTIVE",
-                    "impressions": 1000,
-                    "clicks": 100,
-                    "createdAt": "2022-01-01T00:00:00.000Z",
-                    "updatedAt": "2022-01-01T00:00:00.000Z"
-                }
-            ],
-            "hasError": false
-        }
-        ```
+- Get a campaign by ID:
 
-- Get a campaign by ID:  
   - `GET /campaigns/:id`
   - Description: Retrieve a single advertising campaign by ID.
   - Response:  
-         ```json
-            {
-                "message": "Campaign retrieved successfully",
-                "data": {
-                    "id": "48346836438463463724",
-                    "title": "Campaign Name",
-                    "description": "Campaign Description",
-                    "status": "ACTIVE",
-                    "impressions": 1000,
-                    "clicks": 100,
-                    "createdAt": "2022-01-01T00:00:00.000Z",
-                    "updatedAt": "2022-01-01T00:00:00.000Z"
-                },
-                "hasError": false
-            }
-        ```
+     `json
+        {
+            "message": "Campaign retrieved successfully",
+            "data": {
+                "id": "48346836438463463724",
+                "title": "Campaign Name",
+                "description": "Campaign Description",
+                "status": "ACTIVE",
+                "impressions": 1000,
+                "clicks": 100,
+                "createdAt": "2022-01-01T00:00:00.000Z",
+                "updatedAt": "2022-01-01T00:00:00.000Z"
+            },
+            "hasError": false
+        }
+    `
 
 - Update a campaign:
+
   - `PUT /campaigns/:id`
   - Description: Update an existing advertising campaign by ID.
   - Request body:  
-        ```json
-            {
+     `json
+        {
+            "title": "Updated Campaign Name",
+            "description": "Updated Campaign Description",
+            "status": "INACTIVE",
+            "impressions": 2000,
+            "clicks": 200,
+        }
+    `
+  - Response:  
+     `json
+        {
+            "message": "Campaign updated successfully",
+            "data": {
+                "id": "48346836438463463724",
                 "title": "Updated Campaign Name",
                 "description": "Updated Campaign Description",
                 "status": "INACTIVE",
                 "impressions": 2000,
                 "clicks": 200,
-            }
-        ```
-  - Response:  
-        ```json
-            {
-                "message": "Campaign updated successfully",
-                "data": {
-                    "id": "48346836438463463724",
-                    "title": "Updated Campaign Name",
-                    "description": "Updated Campaign Description",
-                    "status": "INACTIVE",
-                    "impressions": 2000,
-                    "clicks": 200,
-                    "createdAt": "2022-01-01T00:00:00.000Z",
-                    "updatedAt": "2022-01-01T00:00:00.000Z"
-                },
-                "hasError": false
-            }
-        ```
+                "createdAt": "2022-01-01T00:00:00.000Z",
+                "updatedAt": "2022-01-01T00:00:00.000Z"
+            },
+            "hasError": false
+        }
+    `
 
 - Delete a campaign:
   - `DELETE /campaigns/:id`
   - Description: Delete an advertising campaign by ID.
   - Response:  
-        ```json
-            {
-                "message": "Campaign deleted successfully",
-                "data": {
-                    "id": "48346836438463463724",
-                    "title": "Updated Campaign Name",
-                    "description": "Updated Campaign Description",
-                    "status": "INACTIVE",
-                    "impressions": 2000,
-                    "clicks": 200,
-                    "createdAt": "2022-01-01T00:00:00.000Z",
-                    "updatedAt": "2022-01-01T00:00:00.000Z"
-                },
-                "hasError": false
-            }
-        ```
+     `json
+        {
+            "message": "Campaign deleted successfully",
+            "data": {
+                "id": "48346836438463463724",
+                "title": "Updated Campaign Name",
+                "description": "Updated Campaign Description",
+                "status": "INACTIVE",
+                "impressions": 2000,
+                "clicks": 200,
+                "createdAt": "2022-01-01T00:00:00.000Z",
+                "updatedAt": "2022-01-01T00:00:00.000Z"
+            },
+            "hasError": false
+        }
+    `
 
 ## Testing the API
 
 You can test the API using tools like Postman, Insomnia, or cURL. Below are some sample cURL commands to interact with the API:
 
-## Development Notes 
+## Development Notes
 
 ### Adding a new feature
 
