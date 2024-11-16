@@ -56,7 +56,7 @@ export const getCampaigns = async (
   res: Response
 ): Promise<any> => {
   try {
-    const campaigns = await CampaignService.getCampaigns();
+    const campaigns = await CampaignService.getCampaigns((req.query.status as string).toUpperCase());
     return res.status(200).json({
       message: "Campaigns retrieved successfully",
       data: campaigns,

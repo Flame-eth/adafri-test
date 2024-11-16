@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { body, param, validationResult } from "express-validator";
+import { body, param, query, validationResult } from "express-validator";
 
 export const createCampaignValidationRules: any = [
   body("title").isString().notEmpty().escape(),
@@ -59,7 +59,7 @@ export const campaignByIdValidationRules: any = [
 ];
 
 export const getCampaignsValidationRules: any = [
-  param("status")
+  query("status")
     .isString()
     .notEmpty()
     .toUpperCase()
