@@ -15,7 +15,10 @@ import type { Request, Response } from "express";
  * the campaign data. If an error occurs during the process, it returns a 500.status with the message
  * "An
  */
-export const createCampaign = async (req: Request, res: Response): Promise<any> => {
+export const createCampaign = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   try {
     const campaign = await CampaignService.createCampaign(req.body);
     return res.status(201).json({
@@ -48,7 +51,10 @@ export const createCampaign = async (req: Request, res: Response): Promise<any> 
  * `hasError` set to false. If an error occurs during the retrieval process, it returns a.status of 500
  * with the message "
  */
-export const getCampaigns = async (req: Request, res: Response): Promise<any> => {
+export const getCampaigns = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   try {
     const campaigns = await CampaignService.getCampaigns();
     return res.status(200).json({
@@ -81,7 +87,10 @@ export const getCampaigns = async (req: Request, res: Response): Promise<any> =>
  * returns a 404.status with the message "Campaign not found". If an error occurs during the process,
  * it
  */
-export const getCampaignById = async (req: Request, res: Response) : Promise<any> => {
+export const getCampaignById = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   try {
     const campaign = await CampaignService.getCampaignById(req.params.id);
     if (!campaign) {
@@ -118,7 +127,10 @@ export const getCampaignById = async (req: Request, res: Response) : Promise<any
  * @returns The `updateCampaign` function returns a JSON response with different messages and data
  * based on the outcome of the update operation.
  */
-export const updateCampaign = async (req: Request, res: Response) :  Promise<any> => {
+export const updateCampaign = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   try {
     const campaign = await CampaignService.updateCampaign(
       req.params.id,
@@ -161,7 +173,10 @@ export const updateCampaign = async (req: Request, res: Response) :  Promise<any
  * returns a 404.status with a message indicating that the campaign was not found. If an error occurs
  * during the deletion process, it
  */
-export const deleteCampaign = async (req: Request, res: Response) :  Promise<any> => {
+export const deleteCampaign = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   try {
     const campaign = await CampaignService.deleteCampaign(req.params.id);
     if (!campaign) {
