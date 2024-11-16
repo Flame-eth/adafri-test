@@ -33,7 +33,6 @@ README.md                  # Documentation
 - [Express](https://expressjs.com/): Fast, unopinionated, minimalist web framework for Node.js.
 - [Prisma](https://www.prisma.io/): Next-generation ORM for Node.js and TypeScript.
 - [MongoDB](https://www.mongodb.com/): A general-purpose, document-based NoSQL database.
-- [Jest](https://jestjs.io/): JavaScript testing framework.
 
 ## Environment Setup
 
